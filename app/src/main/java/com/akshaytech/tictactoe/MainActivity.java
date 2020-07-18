@@ -1,6 +1,9 @@
 package com.akshaytech.tictactoe;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -123,20 +126,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void player1Wins() {
         player1Points++;
-        Toast.makeText(this, firstname+" wins!", Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        alertDialogBuilder.setTitle("Result");
+        alertDialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(MainActivity.this,"Well done",Toast.LENGTH_SHORT).show();
+            }
+        });
+        alertDialogBuilder.setMessage(firstname+" wins!");
+        alertDialogBuilder.show();
         updatePointsText();
         resetBoard();
     }
 
     private void player2Wins() {
         player2Points++;
-        Toast.makeText(this, secondname+" wins!", Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        alertDialogBuilder.setTitle("Result");
+        alertDialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(MainActivity.this,"Well done",Toast.LENGTH_SHORT).show();
+            }
+        });
+        alertDialogBuilder.setMessage(secondname+" wins!");
+        alertDialogBuilder.show();
         updatePointsText();
         resetBoard();
     }
 
     private void draw() {
-        Toast.makeText(this, "Draw!", Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        alertDialogBuilder.setTitle("Result");
+        alertDialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(MainActivity.this,"Well done",Toast.LENGTH_SHORT).show();
+            }
+        });
+        alertDialogBuilder.setMessage("Draw!!!");
+        alertDialogBuilder.show();
         resetBoard();
     }
 
