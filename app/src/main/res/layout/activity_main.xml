@@ -16,18 +16,20 @@
             android:id="@+id/tv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
             android:text="Player 1: 0"
-            android:textStyle="bold"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv1"
-            android:textStyle="bold"
+            android:fontFamily="sans-serif-smallcaps"
             android:text="Player 2: 0"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btn_reset"

@@ -1,6 +1,6 @@
 package com.akshaytech.tictactoe;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private TextView textViewPlayer1;
     private TextView textViewPlayer2;
-
+    String firstname,secondname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +28,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         textViewPlayer1 = findViewById(R.id.tv1);
         textViewPlayer2 = findViewById(R.id.tv2);
+        Bundle bn = getIntent().getExtras();
+        firstname = bn.getString("first");
+        secondname = bn.getString("second");
+        textViewPlayer1.setText(firstname);
+        textViewPlayer2.setText(secondname);
+
 
         for ( i = 0; i < 3; i++) {
             for ( j = 0; j < 3; j++) {
@@ -117,14 +123,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void player1Wins() {
         player1Points++;
-        Toast.makeText(this, "Player 1 wins!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, firstname+" wins!", Toast.LENGTH_SHORT).show();
         updatePointsText();
         resetBoard();
     }
 
     private void player2Wins() {
         player2Points++;
-        Toast.makeText(this, "Player 2 wins!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, secondname+" wins!", Toast.LENGTH_SHORT).show();
         updatePointsText();
         resetBoard();
     }
@@ -135,8 +141,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void updatePointsText() {
-        textViewPlayer1.setText("Player 1: " + player1Points);
-        textViewPlayer2.setText("Player 2: " + player2Points);
+        textViewPlayer1.setText(firstname+": " + player1Points);
+        textViewPlayer2.setText(secondname+": " + player2Points);
     }
 
     private void resetBoard() {
