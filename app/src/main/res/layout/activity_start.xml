@@ -14,10 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Welcome to\nTic-Tac-Toe"
-        android:textSize="60dp"
-        android:layout_marginTop="30dp"
+        android:textSize="40dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:fontFamily="sans-serif-smallcaps"/>
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_fileName="27268-bubbles.json"/>
 
     <EditText
         android:id="@+id/firstName"
@@ -39,8 +46,8 @@
         android:textSize="20dp"/>
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_width="200dp"
-        android:layout_height="80dp"
+        android:layout_width="180dp"
+        android:layout_height="70dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text=""
