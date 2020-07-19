@@ -127,10 +127,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alertDialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(MainActivity.this,"Well done",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Well done, "+firstname,Toast.LENGTH_SHORT).show();
             }
         });
-        alertDialogBuilder.setMessage(firstname+" wins!");
+        alertDialogBuilder.setMessage(firstname+" won!");
         alertDialogBuilder.show();
         updatePointsText();
         resetBoard();
@@ -143,10 +143,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alertDialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(MainActivity.this,"Well done",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Well done, "+secondname,Toast.LENGTH_SHORT).show();
             }
         });
-        alertDialogBuilder.setMessage(secondname+" wins!");
+        alertDialogBuilder.setMessage(secondname+" won!");
         alertDialogBuilder.show();
         updatePointsText();
         resetBoard();
