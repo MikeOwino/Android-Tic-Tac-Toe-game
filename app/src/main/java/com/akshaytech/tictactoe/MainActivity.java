@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Bundle bn = getIntent().getExtras();
         firstname = bn.getString("first");
         secondname = bn.getString("second");
-        textViewPlayer1.setText(firstname);
-        textViewPlayer2.setText(secondname);
+        textViewPlayer1.setText(firstname+":");
+        textViewPlayer2.setText(secondname+":");
 
 
         for ( i = 0; i < 3; i++) {
