@@ -4,7 +4,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -47,13 +50,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-        Button buttonReset = findViewById(R.id.btn_reset);
-        buttonReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                  resetGame();
-            }
-        });
     }
 
     @Override
@@ -185,8 +181,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         roundCount = 0;
         player1Turn = true;
     }
-    private void resetGame()
-    {
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menubar,menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    public void exitApp(MenuItem item) {
+        Toast.makeText(this, "Exit", Toast.LENGTH_SHORT).show();
+        moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
+    }
+
+    public void home(MenuItem item) {
+        Intent intent = new Intent(MainActivity.this,StartActivity.class);
+        startActivity(intent);
+    }
+
+    public void resetGame(MenuItem item) {
         player1Points=0;
         player2Points=0;
         updatePointsText();
