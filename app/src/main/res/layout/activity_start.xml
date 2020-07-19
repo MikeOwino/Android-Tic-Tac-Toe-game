@@ -40,10 +40,11 @@
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:text="Submit"
+        android:text=""
+        android:background="@drawable/submiticon"
         android:onClick="Submit"
         android:textStyle="bold"
         android:textAllCaps="false"
