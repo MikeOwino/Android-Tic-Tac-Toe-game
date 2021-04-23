@@ -1,7 +1,13 @@
 package com.akshaytech.tictactoe;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private TextView textViewPlayer1;
     private TextView textViewPlayer2;
-
+    String firstname,secondname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +34,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         textViewPlayer1 = findViewById(R.id.tv1);
         textViewPlayer2 = findViewById(R.id.tv2);
+        Bundle bn = getIntent().getExtras();
+        firstname = bn.getString("first");
+        secondname = bn.getString("second");
+        textViewPlayer1.setText(firstname+":");
+        textViewPlayer2.setText(secondname+":");
+
 
         for ( i = 0; i < 3; i++) {
             for ( j = 0; j < 3; j++) {
@@ -38,13 +50,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-        Button buttonReset = findViewById(R.id.btn_reset);
-        buttonReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                  resetGame();
-            }
-        });
     }
 
     @Override
@@ -117,26 +122,53 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void player1Wins() {
         player1Points++;
-        Toast.makeText(this, "Player 1 wins!", Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        alertDialogBuilder.setTitle("Result");
+        alertDialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(MainActivity.this,"Well done, "+firstname,Toast.LENGTH_SHORT).show();
+            }
+        });
+        alertDialogBuilder.setMessage(firstname+" won!");
+        alertDialogBuilder.show();
         updatePointsText();
         resetBoard();
     }
 
     private void player2Wins() {
         player2Points++;
-        Toast.makeText(this, "Player 2 wins!", Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        alertDialogBuilder.setTitle("Result");
+        alertDialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(MainActivity.this,"Well done, "+secondname,Toast.LENGTH_SHORT).show();
+            }
+        });
+        alertDialogBuilder.setMessage(secondname+" won!");
+        alertDialogBuilder.show();
         updatePointsText();
         resetBoard();
     }
 
     private void draw() {
-        Toast.makeText(this, "Draw!", Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        alertDialogBuilder.setTitle("Result");
+        alertDialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(MainActivity.this,"Well done",Toast.LENGTH_SHORT).show();
+            }
+        });
+        alertDialogBuilder.setMessage("Draw!!!");
+        alertDialogBuilder.show();
         resetBoard();
     }
 
     private void updatePointsText() {
-        textViewPlayer1.setText("Player 1: " + player1Points);
-        textViewPlayer2.setText("Player 2: " + player2Points);
+        textViewPlayer1.setText(firstname+": " + player1Points);
+        textViewPlayer2.setText(secondname+": " + player2Points);
     }
 
     private void resetBoard() {
@@ -149,8 +181,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         roundCount = 0;
         player1Turn = true;
     }
-    private void resetGame()
-    {
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menubar,menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    public void exitApp(MenuItem item) {
+        Toast.makeText(this, "Exit", Toast.LENGTH_SHORT).show();
+        moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
+    }
+
+    public void home(MenuItem item) {
+        Intent intent = new Intent(MainActivity.this,StartActivity.class);
+        startActivity(intent);
+    }
+
+    public void resetGame(MenuItem item) {
         player1Points=0;
         player2Points=0;
         updatePointsText();
